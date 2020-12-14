@@ -12,10 +12,10 @@ const Todo = ({ text, todo, todos, id, setTodos, address, createdAt}) => {
                 <p className="todotext">{text}</p>
                 {todo.address ? <p className="todoaddress">Address: {address}</p> : ''}
                 {todo.createdAt ? <p className="todocreat">memo created at: {createdAt}</p> : ''}
+                <button className="delbtn" onClick={deleteHandler}>
+                <i className="fa fa-times" />
+                </button>
             </div>
-            <button className="delbtn" onClick={deleteHandler}>
-                <i className="fas fa-trash" />
-            </button>
         </div>
     )
 }
