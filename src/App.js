@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import TodoList from './TodoList';
 import Form from './Form';
@@ -25,6 +25,27 @@ const DEFAULT_TODO = [
 function App() {
   const [inputText, setInputText] = useState("");
   const [todos, setTodos] = useState([...DEFAULT_TODO]);
+
+  //讀取
+  useEffect(() => {
+    const getLocalTodos = () => {
+      if (localStorage.getItem("todos") === null) {
+        localStorage.setItem("todos", JSON.stringify([]));
+      } else {
+        let todoLocal = JSON.parse(localStorage.getItem("todos"))
+        setTodos(todoLocal);
+      }
+    };
+    getLocalTodos();
+  },[]);
+  //儲存
+  useEffect(() => {
+    const saveLocalTodos = () => {
+      localStorage.setItem("todos", JSON.stringify(todos));
+    };
+    saveLocalTodos();
+  }, [todos]);
+
 
   return (
     <div className="App">
